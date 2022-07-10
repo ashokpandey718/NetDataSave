@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyApp.Models;
+using System.Data.SqlClient;
 namespace MyApp.Db.DbOperations
 {
    public class EmployeeRepository
@@ -12,13 +13,13 @@ namespace MyApp.Db.DbOperations
         {
             using (var context = new EmployeeDBEntities())
             {
-                Employee emp = new Employee();
+                Employee emp = new Employee()
                 {
-                    emp.FirstName = model.FirstName;
-                    emp.LastName = model.LastName;
-                    emp.Email = model.Email;
-                    emp.Code = model.Code;
-                }
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    Code = model.Code
+                };
                 context.Employee.Add(emp);
                 context.SaveChanges();
                 return emp.Id;
